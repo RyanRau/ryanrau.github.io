@@ -19,7 +19,20 @@ let replacements = {
     end: " { get; set; }",
 }
 
+//#region Helpers
+function stripTabs(json) {
+    const tabStrip = / +(?=["'].*["']: +.*,{0,1})/gm;
+    return json.replaceAll(tabStrip, '')
+}
+
+function includeJsonProperty(json){
+
+}
+//#endregion
+
 function convertCSharp(json) {
+    json = stripTabs(json)
+
     //TODO add bad json catching
     let innerMatch = json.match(this.subObjRegex)
     
@@ -28,7 +41,7 @@ function convertCSharp(json) {
 
         innerMatch = json.match(subObjRegex)
     }
-    document.getElementById('MainOutput').value = processRegex(json, "ParentObj");
+    document.getElementById('parentOutput').value = processRegex(json, "ParentObj");
 }
 
 function processSubObj(obj) {
@@ -53,7 +66,21 @@ function processRegex(json, objName) {
 }
 
 //#region Tab Creation/Deletion/Switching
+function showParentObjTab() {
+    unselectTabs();
+
+    document.getElementById('parentContent').style.display = "block";
+    document.getElementById('parentTab').className += " active";
+}
+
 function switchTab(e, tab) {
+    unselectTabs();
+
+    document.getElementById(tab).style.display = "block";
+    e.currentTarget.className += " active";
+}
+
+function unselectTabs() {
     let content = document.getElementsByClassName("tabcontent");
     for (let i = 0; i < content.length; i++) {
         content[i].style.display = "none";
@@ -63,9 +90,6 @@ function switchTab(e, tab) {
     for (let i = 0; i < link.length; i++) {
         link[i].className = link[i].className.replace(" active", "");
     }
-
-    document.getElementById(tab).style.display = "block";
-    e.currentTarget.className += " active";
 }
 
 function createNewTab(name, content){
@@ -81,14 +105,14 @@ function createNewTab(name, content){
 function clearTabs(){
     let tabs = document.getElementById('tabs')
     for (let i = tabs.children.length - 1; i >= 0; i--){
-        if (tabs.children[i].value != "main"){
+        if (tabs.children[i].value != "parent"){
             tabs.children[i].remove()
         }
     }
 
     let content = document.getElementById('right-col')
     for (let i = content.children.length - 1; i >= 0; i--){
-        if (content.children[i].id != "main" && content.children[i].id != "tabs"){
+        if (content.children[i].id != "parentContent" && content.children[i].id != "tabs"){
             content.children[i].remove()
         }
     }
@@ -99,13 +123,7 @@ function onConvert() {
     clearTabs();
 
     let inputTextElement = document.getElementById('inputText');
-    stripTabs(inputTextElement)
 
-
-    convertCSharp(inputTextElement.value)
-}
-
-function stripTabs(element) {
-    const tabStrip = / +(?=["'].*["']: +.*,{0,1})/gm;
-    element.value = element.value.replaceAll(tabStrip, '')
+    convertCSharp(inputTextElement.value);
+    showParentObjTab();
 }

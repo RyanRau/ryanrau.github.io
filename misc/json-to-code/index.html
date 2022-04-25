@@ -10,35 +10,39 @@
         <div class="content">
             <div class="flex-col left-col">
                 <textarea id="inputText" rows="50" cols="75">{
-                    "season": "2022",
-                    "round": "4",
-                    "url": "http://en.wikipedia.org/wiki/2022_Emilia_Romagna_Grand_Prix",
-                    "raceName": "Emilia Romagna Grand Prix",
-                    "Circuit": {
-                    "circuitId": "imola",
-                    "url": "http://en.wikipedia.org/wiki/Autodromo_Enzo_e_Dino_Ferrari",
-                    "circuitName": "Autodromo Enzo e Dino Ferrari",
-                    "Location": {
-                    "lat": "44.3439",
-                    "long": "11.7167",
-                    "locality": "Imola",
-                    "country": "Italy"
-                    }
-                    },
-                    "date": "2022-04-24",
-                    "time": "13:00:00Z"
-                    }</textarea>
+    "season": "2022",
+    "round": "4",
+    "url": "http://en.wikipedia.org/wiki/2022_Emilia_Romagna_Grand_Prix",
+    "raceName": "Emilia Romagna Grand Prix",
+    "Circuit": {
+        "circuitId": "imola",
+        "url": "http://en.wikipedia.org/wiki/Autodromo_Enzo_e_Dino_Ferrari",
+        "circuitName": "Autodromo Enzo e Dino Ferrari",
+        "Location": {
+            "lat": "44.3439",
+            "long": "11.7167",
+            "locality": "Imola",
+            "country": "Italy"
+        }
+    },
+    "date": "2022-04-24",
+    "time": "13:00:00Z"
+}</textarea>
             </div>
-            <div class="flex-col center-col">
+            <div class="center-col">
+                <!-- <div>
+                    <input type="checkbox" id="includeJsonProp" name="includeJsonProp" value="include">
+                    <label for="includeJsonProp">Include "[JsonProperty("...")]"</label><br>
+                </div> -->
                 <button onclick="onConvert()">Convert</button>
             </div>
             <div id="right-col" class="right-col">
                 <div id="tabs" class="tab">
-                    <button class="tablinks" value="main" onclick="switchTab(event, 'main')">Parent Obj</button>
+                    <button id="parentTab" class="tablinks" value="parent" onclick="switchTab(event, 'parentContent')">Parent Obj</button>
                 </div>
 
-                <div id="main" class="tabcontent">
-                    <textarea id="MainOutput" rows="50" cols="75"></textarea>
+                <div id="parentContent" class="tabcontent">
+                    <textarea id="parentOutput" rows="50" cols="75"></textarea>
                 </div>
             </div>
         </div> 
