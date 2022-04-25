@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <script src="convert.js"></script>
+
+        <title>JSON to Code</title>
+    </head>
+
+    <body>
+        <div class="content">
+            <div class="flex-col left-col">
+                <textarea id="inputText" rows="50" cols="75">{
+                    "AccountBalance": 0.0000,
+                    "AccountExecCode": "!!3",
+                    "AccountExecCodeDisplay": "Rosemark, Ken B.",
+                    "AccountRepCode": "!!E",
+                    "AccountRepCodeDisplay": "zzDavis, Jenney W.",
+                    "AddressLine1": "403 Fifth Avenue NW",
+                    "AddressLine2": "",
+                    "AutoApplyPay": "N",
+                    'AutoApplyPay': 'N',
+                    "BillAddress1": "",
+                    }</textarea>
+            </div>
+            <div class="flex-col center-col">
+                <button onclick="convert()">Convert</button>
+            </div>
+            <div class="flex-col right-col">
+                <textarea id="outputText" rows="50" cols="75"></textarea>
+            </div>
+        </div> 
+    </body>
+</html>
